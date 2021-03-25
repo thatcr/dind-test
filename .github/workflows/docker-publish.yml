@@ -26,6 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Try Things
+        run: |
+          docker run python:3.8-buster python -V
+          docker run python:3.9-alpine python -V
+
       - name: Run tests
         run: |
           if [ -f docker-compose.test.yml ]; then
@@ -47,11 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Try Things
-        run: |
-          docker run python:3.8-buster python -V
-          docker run python:3.9-alpine python -V
-          
+
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
